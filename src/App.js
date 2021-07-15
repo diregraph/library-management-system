@@ -1,41 +1,58 @@
+import React, { Suspense } from "react";
 import { ThemeProvider } from "styled-components";
 import { BsBookHalf } from "react-icons/bs";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import { Main, Footer } from "./components/Layout";
 import { NavBar, NavItem, NavLink } from "./components/Navbar";
+import Spinner from "./components/Spinner";
 
-import Dashboard from "./containers/Dashboard";
+import { DASHBOARD, CATALOG } from "./shared/routes";
+
+const Dashboard = React.lazy(() => {
+    return import("./containers/Dashboard");
+});
+
+const theme = {
+    primary: {
+        main: "#29b6f6",
+        light: "#73e8ff",
+        dark: "#0086c3",
+        textColor: "#000",
+        disabled: "#f3f3f3",
+    },
+    secondary: {
+        main: "#fff",
+    },
+};
 
 function App() {
-    const theme = {
-        primary: {
-            main: "#29b6f6",
-            light: "#73e8ff",
-            dark: "#0086c3",
-            textColor: "#000",
-        },
-        secondary: {
-            main: "#fff",
-        },
-    };
+    let routes = (
+        <Suspense fallback={<Spinner />}>
+            <Switch>
+                <Route exact path={DASHBOARD} component={Dashboard} />
+                <Route exact path={CATALOG} component={Spinner} />
+            </Switch>
+        </Suspense>
+    );
 
     return (
         <ThemeProvider theme={theme}>
             <NavBar>
                 <NavItem>
-                    <NavLink href="#">
+                    <NavLink href={CATALOG}>
                         <BsBookHalf />
                     </NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink href="#">Catalog</NavLink>
+                    <NavLink href={CATALOG}>Catalog</NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink href="#">Dashboard</NavLink>
+                    <NavLink href={DASHBOARD}>Dashboard</NavLink>
                 </NavItem>
             </NavBar>
             <Main>
-                <Dashboard />
+                <Router>{routes}</Router>
             </Main>
             <Footer>
                 Copyright {new Date().getFullYear()} © Spark Academy{" "}
