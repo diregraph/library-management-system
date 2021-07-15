@@ -1,11 +1,6 @@
 import styled from "styled-components";
 
-const FluidContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-`;
+import { FluidContainer } from "../components/CommonComponents";
 
 const Title = styled.h1`
     font-size: 7.5em;
@@ -19,9 +14,7 @@ const Subtitle = styled.h6`
 
 const NotFound = () => (
     <FluidContainer>
-        <Title>
-            404!
-        </Title>
+        <Title>404!</Title>
         <br />
         <Subtitle>The page you are looking for doesn't exist.</Subtitle>
     </FluidContainer>
