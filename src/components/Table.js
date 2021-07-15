@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import { capitalizeFirstLetter } from "../shared/utils";
+
 const StyledTable = styled.table`
     border: none;
     border-collapse: collapse;
@@ -8,7 +10,7 @@ const StyledTable = styled.table`
 
     td,
     th {
-        border: none;
+        border: 1px solid;
     }
 
     td {
@@ -16,15 +18,15 @@ const StyledTable = styled.table`
     }
 
     tbody tr {
-        :nth-of-type(odd) {
-            background-color: #efefef;
+        :nth-of-type(even) {
+            background-color: ${(props) => props.theme.primary.light};
         }
         :hover {
-            background-color: lightpink;
+            background-color: ${(props) => props.theme.primary.dark};
         }
     }
     thead > tr {
-        background-color: #c2c2c2;
+        background-color: ${(props) => props.theme.primary.main};
     }
 `;
 
@@ -38,7 +40,7 @@ const TableMarkup = ({ titles, data }) => (
         <thead>
             <tr>
                 {titles.map((title, index) => (
-                    <th key={index}>{title}</th>
+                    <th key={index}>{capitalizeFirstLetter(title)}</th>
                 ))}
             </tr>
         </thead>
@@ -54,6 +56,11 @@ const TableMarkup = ({ titles, data }) => (
     </StyledTable>
 );
 
-const Tables = ({ data }) => <TableMarkup titles={Object.keys(data[0])} data={data} />
+const Tables = ({ data }) =>
+    data ? (
+        <TableMarkup titles={Object.keys(data[0])} data={data} />
+    ) : (
+        "No data to populate"
+    );
 
 export default Tables;
