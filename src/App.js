@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import { ThemeProvider } from "styled-components";
 import { BsBookHalf } from "react-icons/bs";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import { Main, Footer } from "./components/Layout";
 import { NavBar, NavItem, NavLink } from "./components/Navbar";
@@ -35,6 +35,7 @@ function App() {
             <Switch>
                 <Route exact path={DASHBOARD} component={Dashboard} />
                 <Route exact path={CATALOG} component={Spinner} />
+                <Route exact path={"/"} component={Dashboard} />
                 <Route component={NotFound} />
             </Switch>
         </Suspense>
