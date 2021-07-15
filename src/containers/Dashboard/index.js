@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 
-import Tabs from "../components/Tabs";
-import Spinner from "../components/Spinner";
+import Tabs from "../../components/Tabs";
+import Spinner from "../../components/Spinner";
 
-import { getBooks } from "../api/booksAPI";
+import { getBooks } from "../../api/booksAPI";
 
 const Dashboard = () => {
     const [isLoading, setIsLoading] = useState(false);
