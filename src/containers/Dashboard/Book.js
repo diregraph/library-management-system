@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { IoReturnUpBack } from "react-icons/io5";
+import styled from "styled-components";
 
 import {
     Container,
@@ -10,13 +11,25 @@ import {
 import Spinner from "../../components/Spinner";
 
 import { getBook } from "../../api/booksAPI";
+import BookCoverPlaceholder from "../../shared/book-cover-placeholder.png";
+
+const ContainerInlineTextAlignLeft = styled(ContainerInline)`
+    align-items: flex-start;
+`;
+
+const H1 = styled.h1`
+    text-align: left;
+`;
+
+const H2 = styled.h2`
+    text-align: left;
+`;
 
 const Books = ({ id, handleBackClick }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [book, setBook] = useState(null);
 
     useEffect(() => {
-        console.log("Fuck");
         setIsLoading(true);
         getBook(id)
             .then((response) => {
@@ -38,25 +51,57 @@ const Books = ({ id, handleBackClick }) => {
                 <IoReturnUpBack />
             </Button>
             {!isLoading && book !== null ? (
-                <FlexRow>
-                    <ContainerInline>
-                        <h1>{book.title}</h1>
-                        <h2>{book.author}</h2>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua.
-                        </p>
+                <>
+                    <FlexRow>
+                        <ContainerInlineTextAlignLeft>
+                            <H1>{book.title}</H1>
+                            <H2>{`by ${book.author}`}</H2>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur
+                                adipisicing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua.
+                            </p>
+                            {book.isAvailable ? (
+                                ""
+                            ) : (
+                                <>
+                                    <h4>{`Burrowed by: ${book.borrowedMemberId}`}</h4>
+                                    <h4>{`Burrowed date: ${book.borrowedDate}`}</h4>
+                                </>
+                            )}
+                        </ContainerInlineTextAlignLeft>
+                        <ContainerInline>
+                            <img
+                                src={BookCoverPlaceholder}
+                                alt="Book Cover Placeholder"
+                                style={{ border: "1px solid black" }}
+                            />
+                        </ContainerInline>
+                    </FlexRow>
+                    <FlexRow>
                         {book.isAvailable ? (
-                            ""
+                            <>
+                                <Button onClick={() => console.log("Call API")}>
+                                    Lend
+                                </Button>
+                                <Button
+                                    danger
+                                    onClick={() => console.log("Call API")}
+                                >
+                                    Delete
+                                </Button>
+                            </>
                         ) : (
                             <>
                                 <h4>{`Burrowed by: ${book.borrowedMemberId}`}</h4>
                                 <h4>{`Burrowed date: ${book.borrowedDate}`}</h4>
+                                <Button onClick={() => console.log("Call API")}>
+                                    Return
+                                </Button>
                             </>
                         )}
-                    </ContainerInline>
-                </FlexRow>
+                    </FlexRow>
+                </>
             ) : (
                 <Spinner />
             )}

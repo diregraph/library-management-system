@@ -23,6 +23,8 @@ const theme = {
         dark: "#0086c3",
         textColor: "#000",
         disabled: "#f3f3f3",
+        danger: "#e91e63",
+        dangerDark: "#b0003a",
     },
     secondary: {
         main: "#fff",
