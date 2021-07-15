@@ -28,6 +28,9 @@ const StyledTable = styled.table`
     thead > tr {
         background-color: ${(props) => props.theme.primary.main};
     }
+    tr > th {
+        padding: 0.25em 0.5em;
+    }
 `;
 
 const TableMarkup = ({ titles, data }) => (
@@ -48,7 +51,13 @@ const TableMarkup = ({ titles, data }) => (
             {data.map((item, index) => (
                 <tr key={index}>
                     {titles.map((title, index) => (
-                        <td key={index}>{item[title]}</td>
+                        <td key={index}>
+                            {typeof item[title] === "boolean"
+                                ? item[title]
+                                    ? "Yes"
+                                    : "No"
+                                : item[title]}
+                        </td>
                     ))}
                 </tr>
             ))}
