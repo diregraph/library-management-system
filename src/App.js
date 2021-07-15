@@ -37,7 +37,9 @@ function App() {
             <Main>
                 <Dashboard />
             </Main>
-            <Footer>This is the footer</Footer>
+            <Footer>
+                Copyright {new Date().getFullYear()} © Spark Academy{" "}
+            </Footer>
         </ThemeProvider>
     );
 }
