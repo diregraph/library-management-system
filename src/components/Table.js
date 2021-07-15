@@ -7,6 +7,7 @@ const StyledTable = styled.table`
     border: none;
     border-collapse: collapse;
     border-collapse: separate;
+    caption-side: top;
 
     td,
     th {
@@ -31,10 +32,20 @@ const StyledTable = styled.table`
     tr > th {
         padding: 0.25em 0.5em;
     }
+    tr > td {
+        cursor: pointer;
+    }
+
+    caption {
+        font-size: 0.9em;
+        padding: 5px;
+        font-weight: bold;
+    }
 `;
 
-const TableMarkup = ({ titles, data }) => (
+const TableMarkup = ({ titles, data, handleClick, caption }) => (
     <StyledTable>
+        <caption>{caption}</caption>
         <colgroup>
             {titles.map((title, index) => (
                 <col key={index} />
@@ -49,7 +60,7 @@ const TableMarkup = ({ titles, data }) => (
         </thead>
         <tbody>
             {data.map((item, index) => (
-                <tr key={index}>
+                <tr key={index} onClick={() => handleClick(item.id)}>
                     {titles.map((title, index) => (
                         <td key={index}>
                             {typeof item[title] === "boolean"
@@ -65,11 +76,16 @@ const TableMarkup = ({ titles, data }) => (
     </StyledTable>
 );
 
-const Tables = ({ data }) =>
+const Table = ({ data, handleRowClick, instruction }) =>
     data ? (
-        <TableMarkup titles={Object.keys(data[0])} data={data} />
+        <TableMarkup
+            titles={Object.keys(data[0])}
+            data={data}
+            handleClick={handleRowClick}
+            caption={instruction}
+        />
     ) : (
         "No data to populate"
     );
 
-export default Tables;
+export default Table;
