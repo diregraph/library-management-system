@@ -1,5 +1,8 @@
-import { getRequest } from "./utils";
+import { getRequest, postRequest, deleteRequest, putRequest } from "./utils";
 
 const BASE_URL = "/book";
 
-export const getBooks = () => getRequest(`${BASE_URL}`);
+//tested
+export const getBooks = () => getRequest(BASE_URL);
+
+export const getBook = (id) => getRequest(`${BASE_URL}/${id}`);
