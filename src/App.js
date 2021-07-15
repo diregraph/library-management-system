@@ -4,6 +4,8 @@ import { BsBookHalf } from "react-icons/bs";
 import { Main, Footer } from "./components/Layout";
 import { NavBar, NavItem, NavLink } from "./components/Navbar";
 
+import Dashboard from "./containers/Dashboard";
+
 function App() {
     const theme = {
         primary: {
@@ -32,7 +34,9 @@ function App() {
                     <NavLink href="#">Dashboard</NavLink>
                 </NavItem>
             </NavBar>
-            <Main>This is the main content</Main>
+            <Main>
+                <Dashboard />
+            </Main>
             <Footer>This is the footer</Footer>
         </ThemeProvider>
     );
