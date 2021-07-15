@@ -1,22 +1,46 @@
-import styled from "styled-components";
+import { ThemeProvider } from "styled-components";
+import { BsBookHalf } from "react-icons/bs";
 
-const Title = styled.h1`
-    font-size: 1.5em;
-    text-align: center;
-    color: palevioletred;
-`;
+import { Main, Footer } from "./components/Layout";
+import { NavBar, NavItem, NavLink } from "./components/Navbar";
 
-// Create a Wrapper component that'll render a <section> tag with some styles
-const Wrapper = styled.section`
-    padding: 4em;
-    background: papayawhip;
-`;
+import Dashboard from "./containers/Dashboard";
 
 function App() {
+    const theme = {
+        primary: {
+            main: "#29b6f6",
+            light: "#73e8ff",
+            dark: "#0086c3",
+            textColor: "#000",
+        },
+        secondary: {
+            main: "#fff",
+        },
+    };
+
     return (
-        <Wrapper>
-            <Title>It's gonna be awesome!</Title>
-        </Wrapper>
+        <ThemeProvider theme={theme}>
+            <NavBar>
+                <NavItem>
+                    <NavLink href="#">
+                        <BsBookHalf />
+                    </NavLink>
+                </NavItem>
+                <NavItem>
+                    <NavLink href="#">Catalog</NavLink>
+                </NavItem>
+                <NavItem>
+                    <NavLink href="#">Dashboard</NavLink>
+                </NavItem>
+            </NavBar>
+            <Main>
+                <Dashboard />
+            </Main>
+            <Footer>
+                Copyright {new Date().getFullYear()} © Spark Academy{" "}
+            </Footer>
+        </ThemeProvider>
     );
 }
 
