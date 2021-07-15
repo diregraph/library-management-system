@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Table from "../../components/Table";
 import { FluidContainer } from "../../components/CommonComponents";
 
+import Book from "./Book";
+
 const Books = ({ catalog }) => {
+    const [selectedId, setSelectedId] = useState(null);
+
     const handleTableRowClick = (id) => {
         console.log(id);
+        setSelectedId(id);
     };
-    return (
+
+    const handleBookViewBackClick = () => {
+        setSelectedId(null);
+    };
+
+    return selectedId === null ? (
         <FluidContainer>
             <Table
                 data={catalog}
@@ -15,6 +25,8 @@ const Books = ({ catalog }) => {
                 instruction="Click row to view book"
             />
         </FluidContainer>
+    ) : (
+        <Book id={selectedId} handleBackClick={handleBookViewBackClick} />
     );
 };
 
