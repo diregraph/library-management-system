@@ -8,20 +8,11 @@ import {
     FluidContainer,
 } from "../../../components/CommonComponents";
 
-
-import { addBook } from "../../../api/booksAPI";
+import {} from "../../../api/memberAPI";
+import AddMemberDialog from "./AddMemberDialog";
 
 const Members = ({ members }) => {
-    const [selectedId, setSelectedId] = useState(null);
     const [showAddMemberDialog, setShowAddMembersDialog] = useState(false);
-
-    const handleTableRowClick = (id) => {
-        setSelectedId(id);
-    };
-
-    const handleMemberViewBackClick = () => {
-        setSelectedId(null);
-    };
 
     const handleAddMember = (confirmed, data) => {
         if (confirmed) {
@@ -31,7 +22,7 @@ const Members = ({ members }) => {
         setShowAddMembersDialog(false);
     };
 
-    return selectedId === null ? (
+    return (
         <>
             <FluidContainer>
                 <Container
@@ -39,22 +30,20 @@ const Members = ({ members }) => {
                     justifyContent="flex-end"
                     alignItems="flex-start"
                 >
-                    <Button rounded onClick={() => setShowAddMembersDialog(true)}>
+                    <Button
+                        rounded
+                        onClick={() => setShowAddMembersDialog(true)}
+                    >
                         <IoAddSharp />
                     </Button>
                 </Container>
-                <Table
-                    data={members}
-                    handleRowClick={handleTableRowClick}
-                />
+                <Table data={members} />
             </FluidContainer>
-            {/* <AddBookDialog
+            <AddMemberDialog
                 show={showAddMemberDialog}
                 handleClose={handleAddMember}
-            /> */}
+            />
         </>
-    ) : (
-        "<Book id={selectedId} handleBackClick={handleMemberViewBackClick} />"
     );
 };
 
