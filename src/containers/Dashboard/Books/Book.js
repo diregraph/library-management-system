@@ -9,11 +9,12 @@ import {
     Button,
 } from "../../../components/CommonComponents";
 import Spinner from "../../../components/Spinner";
-
-import { getBook } from "../../../api/booksAPI";
-import BookCoverPlaceholder from "../../../shared/book-cover-placeholder.png";
 import ConfirmationDialog from "../../../components/ConfirmationDialog";
 import LendDialog from "./LendDialog";
+
+import { getBook, lendBook } from "../../../api/booksAPI";
+import { getTodaysDate } from "../../../shared/utils";
+import BookCoverPlaceholder from "../../../shared/book-cover-placeholder.png";
 
 const ContainerInlineTextAlignLeft = styled(ContainerInline)`
     align-items: flex-start;
@@ -56,9 +57,9 @@ const Books = ({ id, handleBackClick }) => {
         setShowDeleteConfirmation(false);
     };
 
-    const handleLend = (confirmed, member) => {
+    const handleLend = (confirmed, memberId) => {
         if (confirmed) {
-            console.log("Book lended to ", member);
+            lendBook(book.id, memberId, getTodaysDate());
         }
         setShowLendConfirmation(false);
     };
