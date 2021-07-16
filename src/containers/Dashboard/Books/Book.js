@@ -9,7 +9,6 @@ import {
     Button,
 } from "../../../components/CommonComponents";
 import Spinner from "../../../components/Spinner";
-import { Modal, DialogBox } from "../../../components/Modal";
 
 import { getBook } from "../../../api/booksAPI";
 import BookCoverPlaceholder from "../../../shared/book-cover-placeholder.png";

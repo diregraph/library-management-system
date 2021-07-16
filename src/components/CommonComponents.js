@@ -71,7 +71,7 @@ export const Select = styled.select`
     color: gray;
     padding: 0.5em;
     font-size: 0.8em;
-    border: 2px solid ${(props)=>props.theme.secondary.light};
+    border: 2px solid ${(props) => props.theme.secondary.light};
     border-radius: 0.5em;
     margin-left: 1em;
 
