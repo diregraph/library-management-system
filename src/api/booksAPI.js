@@ -13,3 +13,6 @@ export const lendBook = (id, burrowedMemberId, burrowedDate) =>
 export const returnBook = (id) => putRequest(`${BASE_URL}/${id}/return`);
 
 export const deleteBook = (id) => deleteRequest(`${BASE_URL}/${id}`);
+
+export const addBook = (title, author) =>
+    postRequest(`${BASE_URL}`, { title, author });
