@@ -11,6 +11,8 @@ import {
 import Book from "./Book";
 import AddBookDialog from "./AddBookDialog";
 
+import { addBook } from "../../../api/booksAPI";
+
 const Books = ({ catalog }) => {
     const [selectedId, setSelectedId] = useState(null);
     const [showAddBookDialog, setShowAddBookDialog] = useState(false);
@@ -26,6 +28,7 @@ const Books = ({ catalog }) => {
     const handleAddBook = (confirmed, data) => {
         if (confirmed) {
             console.log(data);
+            addBook(data)
         }
         setShowAddBookDialog(false);
     };
