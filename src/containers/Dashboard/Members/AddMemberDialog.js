@@ -18,7 +18,7 @@ export default function AddMemberDialog({ handleClose, show }) {
     };
     const sendDone = () => {
         if (name !== "" && phone !== "") {
-            const data = { name, phone };
+            const data = { name, phoneNo: phone };
             clearInputs();
             handleClose(true, data);
         } else if (name === "") {

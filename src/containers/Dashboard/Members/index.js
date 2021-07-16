@@ -8,7 +8,7 @@ import {
     FluidContainer,
 } from "../../../components/CommonComponents";
 
-import {} from "../../../api/memberAPI";
+import { addMember } from "../../../api/memberAPI";
 import AddMemberDialog from "./AddMemberDialog";
 
 const Members = ({ members }) => {
@@ -16,8 +16,7 @@ const Members = ({ members }) => {
 
     const handleAddMember = (confirmed, data) => {
         if (confirmed) {
-            console.log(data);
-            // addBook(data)
+            addMember(data)
         }
         setShowAddMembersDialog(false);
     };
