@@ -14,6 +14,7 @@ import { Modal, DialogBox } from "../../../components/Modal";
 import { getBook } from "../../../api/booksAPI";
 import BookCoverPlaceholder from "../../../shared/book-cover-placeholder.png";
 import ConfirmationDialog from "../../../components/ConfirmationDialog";
+import LendDialog from "./LendDialog";
 
 const ContainerInlineTextAlignLeft = styled(ContainerInline)`
     align-items: flex-start;
@@ -31,6 +32,7 @@ const Books = ({ id, handleBackClick }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [book, setBook] = useState(null);
     const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+    const [showLendConfirmation, setShowLendConfirmation] = useState(false);
 
     useEffect(() => {
         setIsLoading(true);
@@ -53,6 +55,13 @@ const Books = ({ id, handleBackClick }) => {
             console.log("Delete confirmed");
         }
         setShowDeleteConfirmation(false);
+    };
+
+    const handleLend = (confirmed, member) => {
+        if (confirmed) {
+            console.log("Book lended to ", member);
+        }
+        setShowLendConfirmation(false);
     };
 
     return (
@@ -93,7 +102,9 @@ const Books = ({ id, handleBackClick }) => {
                             {book.isAvailable ? (
                                 <>
                                     <Button
-                                        onClick={() => console.log("Call API")}
+                                        onClick={() =>
+                                            setShowLendConfirmation(true)
+                                        }
                                     >
                                         Lend
                                     </Button>
@@ -129,6 +140,7 @@ const Books = ({ id, handleBackClick }) => {
                 headerText="Confirm deletion"
                 detailText="Are you sure you want to delete this book? This action can't be undone."
             />
+            <LendDialog show={showLendConfirmation} handleClose={handleLend} />
         </>
     );
 };
