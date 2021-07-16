@@ -5,7 +5,8 @@ export const TabContainer = styled.div`
     overflow: hidden;
     background: #fff;
     height: 100%;
-    max-width: 80%
+    max-width: 80%;
+    min-width: 80%;
 `;
 
 const TabButtonContainer = styled.div`
