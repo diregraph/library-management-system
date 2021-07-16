@@ -8,6 +8,7 @@ const StyledTable = styled.table`
     border-collapse: collapse;
     border-collapse: separate;
     caption-side: top;
+    min-width: 80%;
 
     td,
     th {
@@ -82,7 +83,7 @@ const Table = ({ data, handleRowClick, instruction }) =>
             titles={Object.keys(data[0])}
             data={data}
             handleClick={handleRowClick}
-            caption={instruction}
+            caption={instruction ? instruction : ""}
         />
     ) : (
         "No data to populate"
