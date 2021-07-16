@@ -7,11 +7,12 @@ import {
     ContainerInline,
     FlexRow,
     Button,
-} from "../../components/CommonComponents";
-import Spinner from "../../components/Spinner";
+} from "../../../components/CommonComponents";
+import Spinner from "../../../components/Spinner";
+import { Modal, DialogBox } from "../../../components/Modal";
 
-import { getBook } from "../../api/booksAPI";
-import BookCoverPlaceholder from "../../shared/book-cover-placeholder.png";
+import { getBook } from "../../../api/booksAPI";
+import BookCoverPlaceholder from "../../../shared/book-cover-placeholder.png";
 
 const ContainerInlineTextAlignLeft = styled(ContainerInline)`
     align-items: flex-start;
@@ -46,6 +47,7 @@ const Books = ({ id, handleBackClick }) => {
     }, [id]);
 
     return (
+        <>
         <Container>
             <Button onClick={handleBackClick} size={1.5}>
                 <IoReturnUpBack />
@@ -106,6 +108,8 @@ const Books = ({ id, handleBackClick }) => {
                 <Spinner />
             )}
         </Container>
+        
+        </>
     );
 };
 
