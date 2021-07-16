@@ -1,23 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import {
     Button,
     Container,
     FlexRow,
-    Select,
 } from "../../../components/CommonComponents";
 import { Modal, DialogBox } from "../../../components/Modal";
 
-import { getMembers } from "../../../api/memberAPI";
-import Spinner from "../../../components/Spinner";
 import Input from "../../../components/Input";
 
 export default function AddBookDialog({ handleClose, show }) {
     const [title, setTitle] = useState("");
     const [author, setAuthor] = useState("");
 
+    const clearInputs = () => {
+        setTitle("");
+        setAuthor("");
+    };
+
     const sendDone = () => {
         if (title !== "" && author !== "") {
+            clearInputs();
             handleClose(true, { title, author });
         } else if (title === "") {
             window.alert("Please enter a title to add.");
@@ -26,7 +29,10 @@ export default function AddBookDialog({ handleClose, show }) {
         }
     };
 
-    const sendCancel = () => handleClose(false, null);
+    const sendCancel = () => {
+        clearInputs();
+        handleClose(false, null);
+    };
 
     return (
         <Modal show={show}>

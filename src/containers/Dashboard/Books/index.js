@@ -27,7 +27,6 @@ const Books = ({ catalog }) => {
 
     const handleAddBook = (confirmed, data) => {
         if (confirmed) {
-            console.log(data);
             addBook(data)
         }
         setShowAddBookDialog(false);
