@@ -10,7 +10,7 @@ import Spinner from "./components/Spinner";
 import { DASHBOARD, CATALOG } from "./shared/routes";
 
 const Dashboard = React.lazy(() => {
-    return import("./containers/Dashboard");
+    return import("./containers/Dashboard/index");
 });
 const NotFound = React.lazy(() => {
     return import("./containers/404");
@@ -23,9 +23,14 @@ const theme = {
         dark: "#0086c3",
         textColor: "#000",
         disabled: "#f3f3f3",
+        danger: "#e91e63",
+        dangerDark: "#b0003a",
     },
     secondary: {
-        main: "#fff",
+        main: "#9e9e9e",
+        light: "#cfcfcf",
+        dark: "#707070",
+        textColor: "#000",
     },
 };
 
